@@ -1,0 +1,16 @@
+name: RankupPro
+main: roamcraft.MrBlobman.RankupPro.Rankup
+version: 1.0.0
+description: >
+             Rankup in style!
+author: MrBlobman
+
+depend: [Vault]
+commands:
+  rankup:
+    description: Basic rankup command.
+    aliases: [ru, buyrank, rank]
+    usage: /<command> <help>
+  ranks:
+    description: Find out the ranks to come and their prices!
+  

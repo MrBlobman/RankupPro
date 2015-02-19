@@ -1,0 +1,138 @@
+#In the Ranks section:
+#For the CommandsToRunOnMenuClick:
+# %player% will be replaced with the players name upon being executed
+# Beginning the command with a "/" will force the player to run the command as if they typed in in chat themselves.
+# Beginning the command with a "!" will run the command as if it was typed into the server console.
+# Beginning the command with a "*" will force the player to run the command and give them the permissions they need for the command to be successful.
+# Beginning the command with a "@" will send the player the message in chat. As if the plugin is talking to them.
+# **Make sure to include at least one of the above options or the command will be ignored**
+#For the RanksMenuLores:
+# %playerName% will be replaced with the players name.
+# %rankPrice% will be replaced with that ranks price.
+# %discount% will be replaced with the players discount. WARNING: if the player's discount is 0 the line containing this keyword will be removed.
+# **Make sure to type these keywords exactly for them to be successful**
+
+Ranks:
+  A:
+    RankPrice: 0.0 #How much it will change the player to get to this rank
+    RankPrefix: '&8[&aA&8]' #Used only to make the messages look better, please also set this in your permissions plugin's group prefix
+    RankInfo: #Displayed when the player types /rankup info
+    - '&bWelcome to prison This is the default rank'
+    - '&4Use /rankup to make your way out of the prison!'
+    - '&5/rankup info &bwill tell you more about the next rank.'
+    RanksMenuHasRankLore: #displayed on the lore of the item in the /ranks menu if the player has that rank
+    - '&aHey %playerName%,'
+    - '&byou paid &e%rankPrice% &bto earn this rank.'
+    - '&dClick this item to run the commands I set :D'
+    RanksMenuDoesNotHaveRankLore: #displayed on the lore of the item in the /ranks menu if the player does not have that rank
+    - '&4You can buy this rank for &c%rankPrice%'
+    - '&aThis price includes your %discount% discount!'
+    CommandsToRunOnMenuClick:
+    - '/rankup info A' #forces the player to run the command
+    - '!warp A %player%' #runs the command from console replacing %player% with the players name
+    - '*broadcast &bwoooooooohooooo' #player runs the command as if they have the required permissions
+    - '@&bHello &e%player%&b, I am the JavaMasta!' #send the player the message
+  B:
+    RankPrice: 100000.0
+    RankPrefix: '&8[&eB&8]'
+    RankInfo:
+    - '&bRankPrefix: &8[&eB&8]'
+    - '&bRankPrice: &a$100,000'
+    - '&eMine in a better mine and start crafting &bDIAMOND TOOLS!!!'
+    RanksMenuHasRankLore:
+    - '&aHey %playerName%,'
+    - '&byou paid &e%rankPrice% &bto earn this rank.'
+    - '&dClick this item to run the commands I set :D'
+    RanksMenuDoesNotHaveRankLore:
+    - '&4You can buy this rank for &c%rankPrice%'
+    - '&aThis price includes your %discount% discount!'
+    CommandsToRunOnMenuClick:
+    - '/rankup info A'
+    - '!warp A %player%'
+    - '*broadcast &bwoooooooohooooo'
+    - '@&bHello &e%player%&b, I am the JavaMasta! #send the player the message'
+  C:
+    RankPrice: 200000.0
+    RankPrefix: '&8[&cC&8]'
+    RankInfo:
+    - '&bI think you can figure out the rest from here, and if you are a player'
+    - '&breading this message, go tell the owner to configure his &eRankupPro &bplugin!'
+    RanksMenuHasRankLore:
+    - '&aHey %playerName%,'
+    - '&byou paid &e%rankPrice% &bto earn this rank.'
+    - '&dClick this item to run the commands I set :D'
+    RanksMenuDoesNotHaveRankLore:
+    - '&4You can buy this rank for &c%rankPrice%'
+    - '&aThis price includes your %discount% discount!'
+    CommandsToRunOnMenuClick:
+    - '/rankup info A'
+    - '!warp A %player%'
+    - '*broadcast &bwoooooooohooooo'
+    - '@&bHello &e%player%&b, I am the JavaMasta! #send the player the message'
+  D:
+    RankPrice: 1.0
+    RankPrefix: ''
+    RankInfo:
+    - ''
+    - ''
+    - 'Add as many of these lines as you need for the /rankup info!'
+    - ''
+    RanksMenuHasRankLore:
+    RanksMenuDoesNotHaveRankLore:
+    CommandsToRunOnMenuClick:
+    #Add as many ranks as you would like. And make sure that they are in order from lowest to highest.
+    #For Example, A is the first rank and C is the top rank. If you add another rank after D it would be higher than D.
+
+DiscountsEnabled: false #set to true to enable
+Discounts:
+  Killer: 10% #Players in the killer permissions group get ranks for 10% cheaper.
+  Shoplifter: 5% #Player in both groups gets the larger discount, in this case 10% from killer
+  
+RanksMenuOptions:
+  HasRankItemType: STAINED_GLASS_PANE #Please copy and paste names from http://jd.bukkit.org/dev/apidocs/org/bukkit/Material.html
+  HasRankItemDataValue: 5 #Used to set wool colors, or log types etc. If unsure set to 0 and consult the RankupPro configuration page.
+  DoesNotHaveRankItemType: STAINED_GLASS_PANE
+  DoesNotHaveRankItemDataValue: 14
+  
+#In the Messages section:
+# %amtNeeded% = amount of money the player stills needs before ranking up
+# %rankPrefix% = rank prefix as defined above
+# %player% = players name
+# **Make sure to type these key words exactly for them to be successful**
+
+Messages:
+  needMoreMoneyToRankup: '&4You need another &a%amtNeeded% &4to rankup to %rankPrefix%!'
+  rankedUp: '&bCongrats! You have ranked up to %rankPrefix%&b for &a%amtNeeded%&b, Good Work!'
+  playerRankedUpBroadcast: '&bHey Everyone! &e%player% &bhas ranked up to &e%rankPrefix%&b!' #Leave blank to disable the broadcast
+ScoreboardEnabled: true #Globally disables the rankup scoreboard. Players can individually toggle it with /rankup toggledisplay 
+ScoreboardOptions:
+  UpdateDelay: 2 
+  Layout:
+    Header: '&4[&bRoamcraft Networks&4]' #Max 32 chars
+    Body: #Max 16 lines, max 45 chars per line
+    - '&bCurrentRank: <currentRank>'
+    - '&eNextRank: <nextRank>'
+    - '&cPlayer Balance: <balance>'
+    - '&1CurrentRankPrice: <currentRankPrice>'
+    - '&6NextRankPrice: <nextRankPrice>'
+    - '&7CostLeftToRankup: <costLeftToRankup>'
+    - '&4Players Online: <playersOnline>'
+    - '&fPercentage Gotten: <%ofRankupCostPlayerHas>'
+    - '&dMy Name: <playerName>'
+    
+#--------------------------------------------------------------------------------
+#              Usable Predefined Variables For Scoreboard Layout
+#--------------------------------------------------------------------------------
+#             Use <nameOfVariable> in layout, it will be replaced
+#                         with the variable value
+#--------------------------------------------------------------------------------
+# VariableName             | Description
+#--------------------------|-----------------------------------------------------
+# currentRank              | the name of the players current rank
+# nextRank                 | the name of the players next rank
+# balance                  | the players balance formatted with M (million), B (billion) and T (trillion)
+# nextRankPrice            | the cost of the next rank
+# costLeftToRankup         | the amount of money still required to rankup (rankupprice - currentbal)
+# playersOnline            | the number of online players
+# %OfRankupCostPlayerHas   | the percentage of the rankup price the player has already earned (currentbal / rankupprice)
+# playerName               | replaced with the name of the player who owns the scoreboard
